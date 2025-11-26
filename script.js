@@ -152,15 +152,18 @@ function initIntro() {
 
   const open = () => {
     // mostra o card
-    card.classList.remove("love-card--hidden");
+    card.style.display = "block";
+    requestAnimationFrame(() => {
+      card.classList.remove("love-card--hidden");
+    });
 
-    // esconde o overlay com fade
+    // esconde o overlay
     overlay.classList.add("intro-overlay--hidden");
     setTimeout(() => {
       overlay.style.display = "none";
     }, 600);
 
-    // SÓ AGORA começamos o resto
+    // inicia lógica depois de abrir
     updateTimeTogether();
     updateCountdown();
     startAutoGallery();
@@ -173,7 +176,6 @@ function initIntro() {
   };
 
   btn.addEventListener("click", open);
-  // se clicar fora também abre
   overlay.addEventListener("click", (e) => {
     if (e.target === overlay) open();
   });
