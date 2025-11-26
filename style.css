@@ -1,0 +1,259 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Poppins",
+    "Segoe UI", sans-serif;
+}
+
+/* Fundo geral */
+.love-page {
+  min-height: 100vh;
+  padding: 16px;
+  background: radial-gradient(
+    circle at top,
+    #ffc2d6 0,
+    #ff9aba 35%,
+    #ffb5c7 70%,
+    #ffcad4 100%
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Card principal */
+.love-card {
+  width: 100%;
+  max-width: 430px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(16px);
+  border-radius: 26px;
+  padding: 22px 18px 24px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+  color: #fff;
+  animation: cardIn 0.6s ease-out;
+}
+
+/* Cabeçalho */
+.love-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.avatar-wrapper {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 10px;
+  border-radius: 50%;
+  padding: 3px;
+  background: radial-gradient(circle at top, #fff0f6, #ff7aa2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.love-header h1 {
+  font-size: 1.7rem;
+  margin: 4px 0;
+}
+
+.since {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* Estatísticas (tempo junto / mêsversário) */
+.stats {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.stat {
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 18px;
+  padding: 10px 12px;
+  text-align: center;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.stat-value {
+  display: block;
+  margin-top: 4px;
+  font-size: 1rem;
+}
+
+/* Bloco das fotos */
+.photos {
+  margin-top: 8px;
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 20px;
+  padding: 10px 10px 14px;
+}
+
+.photos-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.photos-header h2 {
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+.photos-icon {
+  font-size: 1.2rem;
+}
+
+/* Galeria (carrossel) */
+.gallery-wrapper {
+  position: relative;
+}
+
+.gallery {
+  display: flex;
+  gap: 10px;
+  overflow-x: hidden;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.gallery::-webkit-scrollbar {
+  display: none;
+}
+
+.gallery {
+  position: relative;
+}
+
+.gallery img {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 300px; /* altura maior */
+  border-radius: 20px;
+  background: #00000010; /* fundo leve quando "sobrar" espaço */
+  scroll-snap-align: center;
+
+  object-fit: cover; /* PREENCHE o card */
+  object-position: center; /* foca no centro da foto */
+
+  transition: transform 0.3s ease;
+}
+
+.gallery img.tall {
+  object-fit: contain; /* fotos muito verticais → mostrar inteira */
+}
+
+@media (max-width: 450px) {
+  .gallery img {
+    height: 260px;
+  }
+}
+
+.gallery img,
+.foto1 {
+  height: 360px !important; /* antes era ~300px */
+}
+
+/* Foto 1 personalizada */
+.foto1 {
+  object-fit: cover !important;
+  object-position: center 35% !important; /* agora vai descer */
+}
+
+/* Pontinhos do carrossel */
+.gallery-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.gallery-dots button {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(255, 255, 255, 0.45);
+  padding: 0;
+  cursor: pointer;
+}
+
+.gallery-dots button.active {
+  width: 14px;
+  background: #ffffff;
+}
+
+/* Mensagem final */
+.message {
+  margin-top: 12px;
+  font-size: 0.95rem;
+  text-align: center;
+  opacity: 0.95;
+}
+
+/* Botão da música */
+.music-btn {
+  margin-top: 12px;
+  border: none;
+  padding: 9px 22px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.3);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.music-btn.playing {
+  background: rgba(255, 255, 255, 0.55);
+}
+
+/* Animação de entrada do card */
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Desktop */
+@media (min-width: 700px) {
+  .love-page {
+    padding: 24px;
+  }
+
+  .love-card {
+    max-width: 480px;
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
