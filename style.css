@@ -25,7 +25,7 @@ body {
   justify-content: center;
   align-items: center;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden; /* só esconde no eixo X */
 }
 
 /* Corações caindo */
@@ -87,6 +87,7 @@ body {
   pointer-events: none;
 }
 
+/* box da intro */
 .intro-box {
   background: rgba(255, 255, 255, 0.22);
   border-radius: 24px;
@@ -127,12 +128,13 @@ body {
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(16px);
   border-radius: 26px;
-  padding: 22px 18px 24px;
+  padding: 20px 16px 20px;
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
   color: #fff;
   animation: cardIn 0.6s ease-out;
   position: relative;
   z-index: 1;
+  margin: 10px 0 40px; /* sobe um pouco o card p/ caber legenda no Insta */
 }
 
 .love-card--hidden {
@@ -144,13 +146,13 @@ body {
 /* Cabeçalho */
 .love-header {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .avatar-wrapper {
-  width: 96px;
-  height: 96px;
-  margin: 0 auto 10px;
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 8px;
   border-radius: 50%;
   padding: 3px;
   background: radial-gradient(circle at top, #fff0f6, #ff7aa2);
@@ -165,7 +167,7 @@ body {
 }
 
 .love-header h1 {
-  font-size: 1.7rem;
+  font-size: 1.6rem;
   margin: 4px 0;
 }
 
@@ -179,7 +181,7 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   gap: 10px;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 
 .stat {
@@ -203,10 +205,10 @@ body {
 
 /* Bloco das fotos */
 .photos {
-  margin-top: 8px;
+  margin-top: 6px;
   background: rgba(255, 255, 255, 0.16);
   border-radius: 20px;
-  padding: 10px 10px 14px;
+  padding: 10px 10px 12px;
 }
 
 .photos-header {
@@ -243,79 +245,64 @@ body {
   display: none;
 }
 
-.gallery {
-  display: flex;
-  gap: 10px;
-  overflow-x: hidden;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-  position: relative;
-}
-
-.gallery::-webkit-scrollbar {
-  display: none;
-}
-
+/* FOTO RESPONSIVA – sem height fixa */
 .gallery img {
+  flex: 0 0 100%;
   width: 100%;
   height: auto;
-  max-height: 70vh; /* ocupa 70% da altura da tela */
+  max-height: 60vh; /* limite geral */
   border-radius: 20px;
   object-fit: cover;
   object-position: center;
+  scroll-snap-align: center;
 }
 
-/* celulares muito altos (ex: iPhones novos, Galaxy 21+) */
+/* celulares muito altos */
 @media (max-height: 900px) {
   .gallery img {
-    max-height: 60vh;
+    max-height: 55vh;
   }
 }
 
 /* celulares médios */
 @media (max-height: 750px) {
   .gallery img {
-    max-height: 55vh;
+    max-height: 50vh;
   }
 }
 
-/* celulares pequenos (antigos: Galaxy Pocket, Moto E, iPhone SE antigo) */
+/* celulares pequenos */
 @media (max-height: 650px) {
   .gallery img {
-    max-height: 48vh;
+    max-height: 44vh;
   }
 }
 
-/* celulares MUITO pequenos (2000–2014) */
+/* celulares bem antigos */
 @media (max-height: 550px) {
-  .gallery img {
-    max-height: 42vh;
-  }
-}
-
-/* caso extremo: telas minúsculas */
-@media (max-height: 480px) {
   .gallery img {
     max-height: 38vh;
   }
 }
 
-.gallery img,
-.foto1 {
-  height: 360px !important;
+@media (max-height: 480px) {
+  .gallery img {
+    max-height: 34vh;
+  }
 }
 
-/* Foto 1 personalizada (apenas ajuste de enquadramento) */
+/* Foto 1 personalizada (só enquadramento) */
 .foto1 {
   object-fit: cover !important;
   object-position: center 35% !important;
 }
+
 /* Pontinhos do carrossel */
 .gallery-dots {
   display: flex;
   justify-content: center;
   gap: 6px;
-  margin-top: 8px;
+  margin-top: 6px;
 }
 
 .gallery-dots button {
@@ -335,7 +322,7 @@ body {
 
 /* Mensagem final */
 .message {
-  margin-top: 12px;
+  margin-top: 10px;
   font-size: 0.95rem;
   text-align: center;
   opacity: 0.95;
@@ -343,7 +330,7 @@ body {
 
 /* Botão da música */
 .music-btn {
-  margin-top: 12px;
+  margin-top: 10px;
   border: none;
   padding: 9px 22px;
   border-radius: 999px;
@@ -382,6 +369,7 @@ body {
 
   .love-card {
     max-width: 480px;
+    margin: 24px 0 40px;
   }
 
   .stats {
