@@ -9,12 +9,25 @@
 </head>
 
 <body class="love-page">
-    <div class="love-card">
+    <!-- Corações caindo -->
+    <div id="heartsContainer" class="hearts-container"></div>
+
+    <!-- Tela inicial -->
+    <div id="introOverlay" class="intro-overlay">
+        <div class="intro-box">
+            <p class="intro-mini">Surpresa pra você 💌</p>
+            <h1>Abra para ver nosso cantinho 💖</h1>
+            <button id="startButton" class="intro-button">Abrir</button>
+        </div>
+    </div>
+
+    <!-- Card principal -->
+    <div class="love-card love-card--hidden" id="loveCard">
         <header class="love-header">
             <div class="avatar-wrapper">
                 <img src="./img/WhatsApp Image 2025-11-25 at 21.06.02.jpeg" alt="Nós dois" class="avatar" />
             </div>
-            <h1>Anderson & Lucivane 💘</h1>
+            <h1>Anderson &amp; Lucivane 💘</h1>
             <p class="since">Desde 19/11/2023 💍</p>
         </header>
 
@@ -37,14 +50,15 @@
 
             <div class="gallery-wrapper">
                 <div class="gallery">
-                    <img class="full-photo" src="./img/WhatsApp Image 2025-11-25 at 21.06.02 (1).jpeg" alt="Foto 1" />
+                    <img class="full-photo foto1" src="./img/WhatsApp Image 2025-11-25 at 21.06.02 (1).jpeg"
+                        alt="Foto 1" />
                     <img src="./img/WhatsApp Image 2025-11-25 at 21.06.01.jpeg" alt="Foto 2" />
                     <img src="./img/WhatsApp Image 2025-11-25 at 21.05.59.jpeg" alt="Foto 3" />
-                    <img src="./img/WhatsApp Image 2025-11-25 at 21.05.58.jpeg" alt="Foto 3" />
-                    <img src="./img/WhatsApp Image 2025-11-25 at 21.05.57 (1).jpeg" alt="Foto 3" />
-                    <img src="./img/WhatsApp Image 2025-11-25 at 21.05.26.jpeg" alt="Foto 3" />
-                    <img src="./img/WhatsApp Image 2025-11-25 at 21.54.15.jpeg" alt="Foto 3" />
-                    <img src="./img/bjo.jpeg" alt="Foto 3" />
+                    <img src="./img/WhatsApp Image 2025-11-25 at 21.05.58.jpeg" alt="Foto 4" />
+                    <img src="./img/WhatsApp Image 2025-11-25 at 21.05.57 (1).jpeg" alt="Foto 5" />
+                    <img src="./img/WhatsApp Image 2025-11-25 at 21.05.26.jpeg" alt="Foto 6" />
+                    <img src="./img/WhatsApp Image 2025-11-25 at 21.54.15.jpeg" alt="Foto 7" />
+                    <img src="./img/bjo.jpeg" alt="Foto 8" />
                 </div>
                 <div class="gallery-dots" id="galleryDots"></div>
             </div>

@@ -17,22 +17,17 @@ function updateTimeTogether() {
   el.innerText = `${dias} dias, ${horas}h ${minutos}m ${segundos}s`;
 }
 
-// ====== PRÓXIMO MÊSVERSÁRIO ======
-
+// ====== PRÓXIMO ANIVERSÁRIO ======
 function updateCountdown() {
   const now = new Date();
 
-  // hoje à meia-noite (só a data, sem hora)
   const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
-  // mês e dia do aniversário (data do relacionamento)
-  const mes = relacionamento.getMonth(); // 0–11
-  const dia = relacionamento.getDate(); // 1–31
+  const mes = relacionamento.getMonth();
+  const dia = relacionamento.getDate();
 
-  // aniversário deste ano
   let nextAnniv = new Date(today.getFullYear(), mes, dia);
 
-  // se já passou neste ano, vai para o próximo ano
   if (today > nextAnniv) {
     nextAnniv = new Date(today.getFullYear() + 1, mes, dia);
   }
@@ -43,9 +38,9 @@ function updateCountdown() {
   const el = document.getElementById("countdown");
   if (!el) return;
 
-  // hoje = 0 dias, depois começa a contar pro próximo
   el.innerText = `${dias} dias`;
 }
+
 // ====== CARROSSEL AUTOMÁTICO + PONTINHOS ======
 function startAutoGallery() {
   const gallery = document.querySelector(".gallery");
@@ -59,7 +54,6 @@ function startAutoGallery() {
   const intervalMs = 10000;
   const dots = [];
 
-  // cria os pontinhos
   imgs.forEach((_, i) => {
     const dot = document.createElement("button");
     if (i === 0) dot.classList.add("active");
@@ -117,16 +111,13 @@ function setupMusic() {
           markPlaying(true);
         })
         .catch(() => {
-          // se o navegador bloquear, o botão fica para o usuário apertar
           markPlaying(false);
         });
     }
   };
 
-  // tenta tocar assim que configurar
   tryAutoPlay();
 
-  // botão manual
   btn.addEventListener("click", () => {
     if (audio.paused) {
       audio.play();
@@ -137,7 +128,6 @@ function setupMusic() {
     }
   });
 
-  // primeira interação na tela também tenta tocar
   document.addEventListener(
     "click",
     () => {
@@ -152,12 +142,64 @@ function setupMusic() {
   );
 }
 
+// ====== TELA INICIAL (ABRIR CANTINHO) ======
+function initIntro() {
+  const overlay = document.getElementById("introOverlay");
+  const card = document.getElementById("loveCard");
+  const btn = document.getElementById("startButton");
+
+  if (!overlay || !card || !btn) return;
+
+  const open = () => {
+    overlay.classList.add("intro-overlay--hidden");
+    card.classList.remove("love-card--hidden");
+    setTimeout(() => {
+      overlay.style.display = "none";
+    }, 600);
+  };
+
+  btn.addEventListener("click", open);
+  overlay.addEventListener("click", open);
+}
+
+// ====== CORAÇÕES CAINDO ======
+function startHearts() {
+  const container = document.getElementById("heartsContainer");
+  if (!container) return;
+
+  function createHeart() {
+    const heart = document.createElement("span");
+    heart.className = "heart";
+    heart.textContent = "💗";
+
+    const size = 14 + Math.random() * 10;
+    const left = Math.random() * 100;
+    const duration = 6 + Math.random() * 4;
+
+    heart.style.left = `${left}%`;
+    heart.style.fontSize = `${size}px`;
+    heart.style.animationDuration = `${duration}s`;
+    heart.style.opacity = 0.35 + Math.random() * 0.4;
+
+    container.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, (duration + 1) * 1000);
+  }
+
+  for (let i = 0; i < 12; i++) createHeart();
+  setInterval(createHeart, 1500);
+}
+
 // ====== INIT ======
 window.addEventListener("load", () => {
   updateTimeTogether();
   updateCountdown();
   startAutoGallery();
   setupMusic();
+  initIntro();
+  startHearts();
 
   setInterval(() => {
     updateTimeTogether();

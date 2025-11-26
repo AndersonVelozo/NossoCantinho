@@ -24,6 +24,86 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Corações caindo */
+.hearts-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.heart {
+  position: absolute;
+  top: -10%;
+  animation-name: heartFall;
+  animation-timing-function: linear;
+  color: #ffffff;
+  text-shadow: 0 4px 10px rgba(255, 0, 90, 0.4);
+}
+
+@keyframes heartFall {
+  0% {
+    transform: translateY(0) translateX(0) scale(1);
+  }
+  100% {
+    transform: translateY(120vh) translateX(20px) scale(1.1);
+  }
+}
+
+/* Tela inicial */
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  transition: opacity 0.5s ease;
+}
+
+.intro-overlay--hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.intro-box {
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 24px;
+  padding: 24px 22px;
+  max-width: 320px;
+  text-align: center;
+  color: #fff;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+}
+
+.intro-mini {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  margin-bottom: 6px;
+}
+
+.intro-box h1 {
+  font-size: 1.3rem;
+  margin: 0 0 14px;
+}
+
+.intro-button {
+  border: none;
+  padding: 9px 24px;
+  border-radius: 999px;
+  background: #ff7fb5;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
 }
 
 /* Card principal */
@@ -37,6 +117,14 @@ body {
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
   color: #fff;
   animation: cardIn 0.6s ease-out;
+  position: relative;
+  z-index: 1;
+}
+
+.love-card--hidden {
+  opacity: 0;
+  transform: translateY(16px) scale(0.96);
+  pointer-events: none;
 }
 
 /* Cabeçalho */
@@ -72,7 +160,7 @@ body {
   opacity: 0.9;
 }
 
-/* Estatísticas (tempo junto / mêsversário) */
+/* Estatísticas */
 .stats {
   display: grid;
   grid-template-columns: 1fr;
@@ -134,32 +222,27 @@ body {
   overflow-x: hidden;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
+  position: relative;
 }
 
 .gallery::-webkit-scrollbar {
   display: none;
 }
 
-.gallery {
-  position: relative;
-}
-
 .gallery img {
   flex: 0 0 100%;
   width: 100%;
-  height: 300px; /* altura maior */
+  height: 300px;
   border-radius: 20px;
-  background: #00000010; /* fundo leve quando "sobrar" espaço */
+  background: #00000010;
   scroll-snap-align: center;
-
-  object-fit: cover; /* PREENCHE o card */
-  object-position: center; /* foca no centro da foto */
-
+  object-fit: cover;
+  object-position: center;
   transition: transform 0.3s ease;
 }
 
 .gallery img.tall {
-  object-fit: contain; /* fotos muito verticais → mostrar inteira */
+  object-fit: contain;
 }
 
 @media (max-width: 450px) {
@@ -170,13 +253,13 @@ body {
 
 .gallery img,
 .foto1 {
-  height: 360px !important; /* antes era ~300px */
+  height: 360px !important;
 }
 
 /* Foto 1 personalizada */
 .foto1 {
   object-fit: cover !important;
-  object-position: center 35% !important; /* agora vai descer */
+  object-position: center 35% !important;
 }
 
 /* Pontinhos do carrossel */
