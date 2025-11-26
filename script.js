@@ -151,15 +151,32 @@ function initIntro() {
   if (!overlay || !card || !btn) return;
 
   const open = () => {
-    overlay.classList.add("intro-overlay--hidden");
+    // mostra o card
     card.classList.remove("love-card--hidden");
+
+    // esconde o overlay com fade
+    overlay.classList.add("intro-overlay--hidden");
     setTimeout(() => {
       overlay.style.display = "none";
     }, 600);
+
+    // SÓ AGORA começamos o resto
+    updateTimeTogether();
+    updateCountdown();
+    startAutoGallery();
+    setupMusic();
+
+    setInterval(() => {
+      updateTimeTogether();
+      updateCountdown();
+    }, 1000);
   };
 
   btn.addEventListener("click", open);
-  overlay.addEventListener("click", open);
+  // se clicar fora também abre
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) open();
+  });
 }
 
 // ====== CORAÇÕES CAINDO ======
@@ -194,15 +211,6 @@ function startHearts() {
 
 // ====== INIT ======
 window.addEventListener("load", () => {
-  updateTimeTogether();
-  updateCountdown();
-  startAutoGallery();
-  setupMusic();
-  initIntro();
-  startHearts();
-
-  setInterval(() => {
-    updateTimeTogether();
-    updateCountdown();
-  }, 1000);
+  initIntro(); // primeiro a tela "Abra para ver nosso cantinho 💖"
+  startHearts(); // corações já caindo no fundo
 });
